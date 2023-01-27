@@ -1,0 +1,39 @@
+pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+rootProject.name = "Clean Arch Test"
+include ':app'
+include ':feature'
+
+include ':feature:userdetails'
+include ':feature:userdetails:ui'
+include ':feature:userdetails:presentation'
+include ':feature:userdetails:domain'
+include ':feature:userdetails:data'
+include ':feature:userdetails:datasource'
+
+include ':feature:newfeature'
+include ':feature:newfeature:ui'
+include ':feature:newfeature:presentation'
+include ':feature:newfeature:domain'
+include ':feature:newfeature:data'
+include ':feature:newfeature:datasource'
+
+include ':common'
+include ':core'
+include ':core:ui'
+include ':core:presentation'
+include ':core:domain'
+include ':core:data'
+include ':core:datasource'
