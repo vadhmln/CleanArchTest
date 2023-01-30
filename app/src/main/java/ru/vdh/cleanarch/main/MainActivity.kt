@@ -15,12 +15,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        Log.e("AAA", "Activity created!!!")
+        Log.e("AAA", "MainActivity created!!!")
 
         if (savedInstanceState == null) {
             supportFragmentManager.commit {
                 add(R.id.main_fragment_container, UserDetailsFragment())
-//                add(R.id.main_fragment_container, UserDetailsFragment.newInstance("RES1"))
                 setReorderingAllowed(true)
                 addToBackStack("name") // name can be null
             }
