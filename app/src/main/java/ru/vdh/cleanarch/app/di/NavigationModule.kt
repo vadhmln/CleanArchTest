@@ -11,7 +11,9 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityComponent
 import ru.vdh.cleanarch.R
+import ru.vdh.cleanarch.app.navigation.AppUserDetailsDestinationToUiMapper
 import ru.vdh.cleanarch.navigation.mapper.GlobalDestinationToUiMapper
+import ru.vdh.cleanarch.userdetails.ui.mapper.NewUserDestinationToUiMapper
 
 @Module
 @InstallIn(ActivityComponent::class)
@@ -32,4 +34,10 @@ class NavigationModule {
     fun providesGlobalDestinationToUiMapper(
         lazyNavController: Lazy<NavController>
     ) = GlobalDestinationToUiMapper(lazyNavController)
+
+    @Provides
+    fun providesAppUserDetailsDestinationToUiMapper(
+        globalDestinationToUiMapper: GlobalDestinationToUiMapper
+    ): NewUserDestinationToUiMapper =
+        AppUserDetailsDestinationToUiMapper(globalDestinationToUiMapper)
 }

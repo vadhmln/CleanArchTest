@@ -13,24 +13,47 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
+import ru.vdh.cleanarch.core.ui.mapper.ViewStateBinder
+import ru.vdh.cleanarch.core.ui.view.BaseFragment
+import ru.vdh.cleanarch.core.ui.view.ViewsProvider
 import ru.vdh.cleanarch.feature.feature1.ui.R
+import ru.vdh.cleanarch.userdetails.presentation.model.UserDetailsPresentationNotification
+import ru.vdh.cleanarch.userdetails.presentation.model.UserDetailsViewState
+import ru.vdh.cleanarch.userdetails.presentation.model.UserPresentationModel
 import ru.vdh.cleanarch.userdetails.presentation.viewmodel.UserDetailsViewModel
+import ru.vdh.cleanarch.userdetails.ui.mapper.NewUserDestinationToUiMapper
+import ru.vdh.cleanarch.userdetails.ui.mapper.NewUserNotificationPresentationToUiMapper
+import javax.inject.Inject
 
 private const val NO_LAYOUT_RESOURCE = 0
 
 @AndroidEntryPoint
-class UserDetailsFragment : Fragment() {
+class UserDetailsFragment : BaseFragment<UserDetailsViewState, UserDetailsPresentationNotification>(),
+    UserDetailsViewsProvider {
 
-    private val viewModel: UserDetailsViewModel by viewModels()
+    override val viewModel: UserDetailsViewModel by viewModels()
 
-    private val layoutResourceId = R.layout.user_details_fragment
+    override val layoutResourceId = R.layout.user_details_fragment
 
-    lateinit var userNameField: TextView
-    lateinit var dataEditView: EditText
-    lateinit var getUserNameButton: View
-    lateinit var saveUserNameButton: View
+    @Inject
+    override lateinit var destinationMapper:
+            NewUserDestinationToUiMapper
 
-    private fun View.bindViews() {
+    @Inject
+    override lateinit var notificationMapper:
+            NewUserNotificationPresentationToUiMapper
+
+    @Inject
+    @JvmSuppressWildcards
+    override lateinit var viewStateBinder:
+            ViewStateBinder<UserDetailsViewState, ViewsProvider>
+
+    override lateinit var userNameField: TextView
+    override lateinit var dataEditView: EditText
+    override lateinit var getUserNameButton: View
+    override lateinit var saveUserNameButton: View
+
+    override fun View.bindViews() {
         userNameField = findViewById(R.id.userDetailsTextView)
         dataEditView = findViewById(R.id.dataEditText)
         getUserNameButton = findViewById<Button>(R.id.get_user_details_button)
@@ -42,6 +65,7 @@ class UserDetailsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        super.onCreateView(inflater, container, savedInstanceState)
 
         Log.e("AAA", "UserDetailsFragment created!!!")
 
@@ -57,8 +81,6 @@ class UserDetailsFragment : Fragment() {
         } else {
             null
         }
-
-
         return view
     }
 
@@ -71,10 +93,9 @@ class UserDetailsFragment : Fragment() {
 
         saveUserNameButton.setOnClickListener {
             val text = dataEditView.text.toString()
-            viewModel.save(text)
+            viewModel.save(UserPresentationModel(firstName = text))
         }
     }
-
 
     companion object {
         private const val ARGUMENT_RESTAURANT_ID = "UserName"

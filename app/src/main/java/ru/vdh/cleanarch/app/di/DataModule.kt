@@ -12,11 +12,25 @@ import ru.vdh.cleanarch.userdetails.data.mapper.UserDataModelToDomainMapper
 import ru.vdh.cleanarch.userdetails.data.repository.UserRepositoryImpl
 import ru.vdh.cleanarch.userdetails.datasource.SharedPrefUserDataSource
 import ru.vdh.cleanarch.userdetails.domain.repository.UserRepository
+import ru.vdh.cleanarch.userdetails.presentation.mapper.UserDetailsDomainToPresentationMapper
+import ru.vdh.cleanarch.userdetails.presentation.mapper.UserPresentationToDomainMapper
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
 class DataModule {
+
+    @Provides
+    fun providesUserDataModelToDomainMapper() = UserDataModelToDomainMapper()
+
+    @Provides
+    fun providesUserDataModelToDataSourceMapper() = UserDataModelToDataSourceMapper()
+
+    @Provides
+    fun providesUserPresentationToDomainMapper() = UserPresentationToDomainMapper()
+
+    @Provides
+    fun providesUserDetailsDomainToPresentationMapper() = UserDetailsDomainToPresentationMapper()
 
     @Provides
     @Singleton
@@ -35,5 +49,4 @@ class DataModule {
         userDataModelToDomainMapper,
         userDataModelToDataSourceMapper
     )
-
 }

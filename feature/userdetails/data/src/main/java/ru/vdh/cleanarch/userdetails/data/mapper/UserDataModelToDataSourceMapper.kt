@@ -1,11 +1,9 @@
 package ru.vdh.cleanarch.userdetails.data.mapper
 
-import ru.vdh.cleanarch.userdetails.data.model.User
-import ru.vdh.cleanarch.userdetails.domain.model.SaveUserNameParam
-import javax.inject.Inject
+import ru.vdh.cleanarch.userdetails.data.model.UserDataModel
+import ru.vdh.cleanarch.userdetails.domain.model.UserNameDomainModel
 
-class UserDataModelToDataSourceMapper @Inject constructor() {
-    fun toDataSource(saveParam: SaveUserNameParam): User {
-        return User(firstName = saveParam.name, lastName = "")
-    }
+class UserDataModelToDataSourceMapper {
+    fun toDataSource(userName: UserNameDomainModel) =
+        UserDataModel(firstName = userName.firstName, lastName = "")
 }

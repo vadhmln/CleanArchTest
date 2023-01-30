@@ -1,11 +1,10 @@
 package ru.vdh.cleanarch.userdetails.domain.repository
 
-import ru.vdh.cleanarch.userdetails.domain.model.SaveUserNameParam
-import ru.vdh.cleanarch.userdetails.domain.model.UserName
+import ru.vdh.cleanarch.userdetails.domain.model.UserNameDomainModel
 
 interface UserRepository {
 
-    fun saveName(saveParam: SaveUserNameParam): Boolean
+    fun saveName(userName: UserNameDomainModel): Boolean
 
-    fun getName(): UserName
+    fun getName(): UserNameDomainModel
 }
