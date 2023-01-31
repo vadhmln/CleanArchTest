@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace 'ru.vdh.cleanarch.feature.feature1.ui'
+    namespace 'ru.vdh.cleanarch.userdetails.ui'
     compileSdk libs.versions.sdk.compile.get().toInteger()
 
     defaultConfig {

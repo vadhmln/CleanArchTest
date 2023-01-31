@@ -9,18 +9,16 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.core.os.bundleOf
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import ru.vdh.cleanarch.core.ui.mapper.ViewStateBinder
 import ru.vdh.cleanarch.core.ui.view.BaseFragment
 import ru.vdh.cleanarch.core.ui.view.ViewsProvider
-import ru.vdh.cleanarch.feature.feature1.ui.R
 import ru.vdh.cleanarch.userdetails.presentation.model.UserDetailsPresentationNotification
 import ru.vdh.cleanarch.userdetails.presentation.model.UserDetailsViewState
-import ru.vdh.cleanarch.userdetails.presentation.model.UserPresentationModel
+import ru.vdh.cleanarch.userdetails.presentation.model.UserDetailsPresentationModel
 import ru.vdh.cleanarch.userdetails.presentation.viewmodel.UserDetailsViewModel
+import ru.vdh.cleanarch.userdetails.ui.R
 import ru.vdh.cleanarch.userdetails.ui.mapper.NewUserDestinationToUiMapper
 import ru.vdh.cleanarch.userdetails.ui.mapper.NewUserNotificationPresentationToUiMapper
 import javax.inject.Inject
@@ -93,7 +91,7 @@ class UserDetailsFragment : BaseFragment<UserDetailsViewState, UserDetailsPresen
 
         saveUserNameButton.setOnClickListener {
             val text = dataEditView.text.toString()
-            viewModel.save(UserPresentationModel(firstName = text))
+            viewModel.save(UserDetailsPresentationModel(firstName = text))
         }
     }
 

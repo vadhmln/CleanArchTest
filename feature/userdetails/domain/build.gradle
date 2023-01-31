@@ -13,7 +13,7 @@ test {
 }
 
 dependencies {
-    implementation project(path: ':core:domain')
+    implementation project(':core:domain')
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.bundles.testImplementation)
 }

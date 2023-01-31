@@ -1,9 +1,9 @@
 package ru.vdh.cleanarch.userdetails.data.datasource
 
-import ru.vdh.cleanarch.userdetails.data.model.UserDataModel
+import ru.vdh.cleanarch.userdetails.data.model.UserDetailsDataModel
 
 interface UserDataSource {
-    fun save(userDataModel: UserDataModel): Boolean
+    fun save(userDetailsDataModel: UserDetailsDataModel): Boolean
 
-    fun get(): UserDataModel
+    fun get(): UserDetailsDataModel
 }

@@ -2,7 +2,7 @@ package ru.vdh.cleanarch.userdetails.datasource
 
 import android.content.Context
 import ru.vdh.cleanarch.userdetails.data.datasource.UserDataSource
-import ru.vdh.cleanarch.userdetails.data.model.UserDataModel
+import ru.vdh.cleanarch.userdetails.data.model.UserDetailsDataModel
 
 private const val SHARED_PREFS_NAME = "shared_prefs_name"
 private const val KEY_FIRST_NAME = "firstName"
@@ -15,17 +15,17 @@ class SharedPrefUserDataSource(context: Context) : UserDataSource {
     private val sharedPreferences =
         context.getSharedPreferences(SHARED_PREFS_NAME, Context.MODE_PRIVATE)
 
-    override fun save(userDataModel: UserDataModel): Boolean {
-        sharedPreferences.edit().putString(KEY_FIRST_NAME, userDataModel.firstName).apply()
-        sharedPreferences.edit().putString(KEY_LAST_NAME, userDataModel.lastName).apply()
+    override fun save(userDetailsDataModel: UserDetailsDataModel): Boolean {
+        sharedPreferences.edit().putString(KEY_FIRST_NAME, userDetailsDataModel.firstName).apply()
+        sharedPreferences.edit().putString(KEY_LAST_NAME, userDetailsDataModel.lastName).apply()
         return true
     }
 
-    override fun get(): UserDataModel {
+    override fun get(): UserDetailsDataModel {
         val firstName =
             sharedPreferences.getString(KEY_FIRST_NAME, DEFAULT_FIRST_NAME) ?: DEFAULT_FIRST_NAME
         val lastName =
             sharedPreferences.getString(KEY_LAST_NAME, DEFAULT_LAST_NAME) ?: DEFAULT_LAST_NAME
-        return UserDataModel(firstName = firstName, lastName = lastName)
+        return UserDetailsDataModel(firstName = firstName, lastName = lastName)
     }
 }
