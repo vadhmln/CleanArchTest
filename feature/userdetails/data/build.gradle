@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace 'ru.vdh.cleanarch.feature.feature1.data'
+    namespace 'ru.vdh.cleanarch.userdetails.data'
     compileSdk libs.versions.sdk.compile.get().toInteger()
 
     defaultConfig {

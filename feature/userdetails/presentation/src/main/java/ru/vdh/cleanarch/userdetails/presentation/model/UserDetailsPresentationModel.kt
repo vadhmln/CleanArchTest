@@ -1,6 +1,6 @@
 package ru.vdh.cleanarch.userdetails.presentation.model
 
-data class UserPresentationModel(
+data class UserDetailsPresentationModel(
     val firstName: String = "",
     val lastName: String = ""
 )

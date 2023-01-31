@@ -1,9 +1,9 @@
 package ru.vdh.cleanarch.userdetails.data.mapper
 
-import ru.vdh.cleanarch.userdetails.data.model.UserDataModel
-import ru.vdh.cleanarch.userdetails.domain.model.UserNameDomainModel
+import ru.vdh.cleanarch.userdetails.data.model.UserDetailsDataModel
+import ru.vdh.cleanarch.userdetails.domain.model.UserDetailsDomainModel
 
 class UserDataModelToDomainMapper {
-    fun toDomain(userDataModel: UserDataModel) =
-        UserNameDomainModel(firstName = userDataModel.firstName, lastName = userDataModel.lastName)
+    fun toDomain(userDetailsDataModel: UserDetailsDataModel) =
+        UserDetailsDomainModel(firstName = userDetailsDataModel.firstName, lastName = userDetailsDataModel.lastName)
 }
